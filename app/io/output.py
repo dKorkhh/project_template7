@@ -1,5 +1,18 @@
 def write_console(text):
-    pass
+    """
+    Write output to the console
+    :param text: text to write
+    :return: None
+    """
+    print(text)
 
 def write_file(filepath, text):
-    pass
+    """
+    Write output to a file
+
+    :param filepath: file to which to write output
+    :param text: text to write
+    :return: None
+    """
+    with open(filepath, 'a', encoding='utf-8') as file:
+        file.write(text + '\n')
