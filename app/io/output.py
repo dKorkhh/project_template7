@@ -14,5 +14,8 @@ def write_file(filepath, text):
     :param text: text to write
     :return: None
     """
-    with open(filepath, 'a', encoding='utf-8') as file:
-        file.write(text + '\n')
+    try:
+        with open(filepath, 'a', encoding='utf-8') as file:
+            file.write(text + '\n')
+    except FileNotFoundError:
+        raise FileNotFoundError('File not found')

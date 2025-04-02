@@ -14,8 +14,11 @@ def read_file(filepath):
     :param filepath: file from which to read input
     :return: information from the file
     """
-    with open(filepath, 'r', encoding='utf-8') as file:
-        return file.read()
+    try:
+        with open(filepath, 'r', encoding='utf-8') as file:
+            return file.read()
+    except FileNotFoundError:
+        raise FileNotFoundError('File not found')
 
 def read_file_pandas(filepath):
     """
@@ -24,5 +27,10 @@ def read_file_pandas(filepath):
     :param filepath: file from which to read input
     :return: information from the file
     """
-    text = pandas.read_csv(filepath)
-    return text.to_string()
+    try:
+        text = pandas.read_csv(filepath)
+        return text.to_string()
+    except FileNotFoundError:
+        raise FileNotFoundError('File not found')
+    except pandas.errors.EmptyDataError:
+        return 'Empty DataFrame'
